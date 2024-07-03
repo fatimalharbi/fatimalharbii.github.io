@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+
+<style>
+    .container{
+        display: grid;
+        grid-template-columns: 20rem 1fr;
+        grid-template-rows: auto auto 1fr;
+        grid-template-areas: 
+        "header header"
+        "after after"
+        "nav main";
+        min-height: 100vh;
+    }
+    header{
+        grid-area: header;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        
+        background-color:white;
+        display:flex;
+        justify-content: space-between;
+    }
+    header .logo{
+        width:90px;
+        height:fit-content;
+    }
+    header h1{
+        color: #29376Dff;
+        font-family:'Montserrat', sans-serif;
+    }
+    header h1 p{
+        color: #29376Dff;
+        font-family:'Montserrat', sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+    }
+    .after{
+        grid-area: after;
+        width: 100%;
+        height: 8px; /* Adjust the height of the border */
+        background: linear-gradient(to right, #FFB94D, #3FBEB3); /* Gradient colors */
+    }
+    nav{
+        grid-area: nav;
+        background-color: rgb(237, 237, 237);
+        border-right: 3px solid #D9BB67ff; /* Add border */
+        border-bottom: 3px solid #D9BB67ff; /* Add border */
+        border-radius: 5px; /* Rounded corners */
+        margin: 5px;
+        padding: 5px;
+        border-radius: 10px; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    #nav.expanded {
+        height:fit-content;
+        overflow-y: scroll;
+    }
+    #toggleButton{
+        border: none;
+        background: none;
+        cursor: pointer;
+        outline: none;
+        float:right;
+        transition: transform 0.5s;
+        color: #D9BB67ff;
+    }
+    #toggleButton:hover{
+        transform: translateY(-10px);
+        color: #3FBEB3;
+    }
+    nav .dropdown-btn{
+        border: none;
+        background: none;
+        text-align: left;
+        cursor: pointer;
+        outline: none;
+        font-size: 20px;
+        font-weight:600; /* make it bold */
+        color: #29376Dff;
+        display: block;
+        padding-top: 15px;
+        padding-bottom: 5px;
+        font-family:'Montserrat', sans-serif;
+        transition: transform 0.5s;
+    }
+    .dropdown-container {
+        display: none;
+        padding-left: 10px;
+        padding-top: 3px;
+        background-color: #3fbeb30b;
+        border-radius: 10px;
+    }
+
+    .dropdown-container a {
+        padding: 10px 8px;
+        text-decoration: none;
+        font-size: 18px;
+        color: #46568Bff;
+        display: block;
+        font-family:'Montserrat', sans-serif;
+        transition: transform 0.5s;
+    }
+    nav a:hover, .dropdown-btn:hover {
+        color: #3FBEB3;
+        transform: translateY(-10px);
+    }
+    .dropdown-container a:hover {
+        color: #3FBEB3;
+        transform: translateY(-10px);
+    }
+    main{
+        grid-area: main;
+        padding: 3rem;
+        background-color: rgb(237, 237, 237);
+        border-radius: 10px;
+        margin: 5px;
+    }
+    #next-button{
+        background-color: #3FBEB3;
+        font-family:'Montserrat', sans-serif;
+        margin-top: 5px; 
+        color: white; 
+        border: none; 
+        padding: 10px 20px; 
+        text-align: center;
+        text-decoration: none;
+        display: inline-block; 
+        font-size: 16px; 
+        margin: 4px 2px; 
+        cursor: pointer; 
+        border-radius: 5px; /* Rounded corners */
+        transition: background-color 0.3s ease;
+        float:inline-end;
+        transition: transform 0.5s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    }
+    #next-button:hover{
+        background-color: #FFB94D;
+        transform: translateY(-10px);
+    }
+    .submenu {
+        display: none;
+    }
+    .submenu:first-child {
+        display: block;
+    }
+    video{  
+        width:100%;
+        display: inline-block;
+    }
+    @media (max-width: 1024px){
+        .container{
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto 1fr minmax(5rem, auto);
+            grid-template-areas: 
+            "header"
+            "after"
+            "main"
+            "nav";
+        }
+        
+    }
+    /* Quiz container styling */
+    #quiz-form {
+        background-color: white; 
+        padding: 20px; 
+        border-radius: 10px; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        font-family: Georgia, 'Times New Roman', Times, serif; 
+        margin: 10px;
+    }
+
+    /* Quiz question styling */
+    #quiz-form h2 {
+        color: #29376Dff; 
+        font-size: 24px; 
+        margin-bottom: 20px; /* Margin below the quiz question */
+        
+    }
+    h2{
+        color: #29376Dff; 
+        font-family:'Poppins', sans-serif;
+    }
+
+    /* Quiz choices styling */
+    #quiz-form p {
+        font-size: 18px; 
+        color: #29376Dff; 
+    }
+
+    #quiz-form label {
+        font-size: 16px; 
+        color: #29376Dff; 
+        margin-left: 10px; 
+    }
+
+    #quiz-form input[type="radio"] {
+        margin-right: 10px; /* Margin to the right of the radio buttons */
+    }
+
+    /* Styling for each choice container */
+    .choice-container {
+        margin-bottom: 10px; /* Margin below each choice */
+    }
+
+     /* Quiz form submit button styling */
+    #quiz-form input[type="submit"] {
+            background-color: #FFB94D; 
+            font-family:'Montserrat', sans-serif;
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            text-align: center;
+            text-decoration: none;
+            display: inline-block; 
+            font-size: 16px; 
+            margin: 4px 2px; 
+            cursor: pointer; 
+            transition: transform 0.5s;
+            border-radius: 5px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+            
+        }
+
+        #quiz-form input[type="submit"]:hover {
+            background-color: #3FBEB3; /* Change background color on hover */
+            transform: translateY(-10px);
+        }
+        
+        .east-map{
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto; 
+            position: relative;
+        }
+        .east-map img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 10px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .pin{
+            position:absolute;
+            width: 0.7em;
+            height: 0.7em;
+        }
+        .pin::before{
+            content: '';
+            position:absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            
+        }
+        .pin span{
+            color: #29376Dff; ;
+            font-size: 0.9em;
+            font-family:'Poppins', sans-serif;
+            white-space: nowrap;
+            position: absolute;
+            left: 1.5em;
+            top: 50%;
+            padding: 0.3em 0.6em;
+            background: #fff;
+            border-radius: 3em;
+            border: solid #FFB94D;
+        }
+        
+        .alamal{
+            top: 41%;
+            left: 47%;
+        }
+        .malath{
+            top: 29%;
+            left: 59%;
+        }
+        .psy{
+            top: 52%;
+            left: 65%;
+        }
+        .bae{
+            top: 56%;
+            left: 75%;
+        }
+        .renew{
+            top: 35%;
+            left: 70%;
+        }
+        /* Hide the elements initially */
+        .pin {
+            display: none;
+        } 
+        .dmm-btn{
+            background-color: #FFB94D; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            text-align: center;
+            text-decoration: none;
+            display: inline-block; 
+            font-size: 16px; 
+            margin: 4px 2px; 
+            cursor: pointer; 
+            border-radius: 5px; /* Rounded corners */
+            transition: transform 0.5s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        }
+        .dmm-btn:hover{
+            background-color: white; 
+            color: #FFB94D; 
+            border: solid#FFB94D;
+            transform: translateY(-10px);
+        }
+
+        @media screen and (max-width: 600px) {
+            .east-map{
+                font-size: 13px;
+            }
+        }
+        
+    
+</style>
+
+<html>
+    
+    <div class="container">
+        <header>
+            <h1>Be Aware <p>Ready to wear your peace of mind?</p></h1>
+            
+            <img src="BeAware.png" class="logo">
+        </header>
+        <div class="after"></div>
+        <nav id="nav">
+            <div id="box">
+            <p style="text-align: center; color: #D9BB67ff; 
+            font-family:'Poppins', sans-serif; font-weight: 600;">Overview Menu</p>
+
+            <button id="toggleButton"> <i class="fa-solid fa-lock fa-xl"></i> </button> 
+
+            <!--<hr style="border:none; height:3px; background-color: #D9BB67ff;">-->
+            </div>
+
+            <button class="dropdown-btn"> <i class="fa-solid fa-list"></i> Part One</button>
+            <div class="dropdown-container">
+                <a href="#product1" class="video-link submenu" data-video="BeAware.mp4"> <i class="fa-regular fa-circle-play"></i> What is Be Aware?</a>
+                <a href="#product2" class="video-link submenu" data-video="BeAware.mp4"> <i class="fa-regular fa-circle-play"></i> How it works?</a>
+                <a href="#product3" class="video-link submenu" data-video="BeAware.mp4"> <i class="fa-regular fa-circle-play"></i> Targeted Audience</a>
+                <a href="#quiz1" class="quiz-link submenu"> <i class="fa-regular fa-circle-question"></i> Quiz 1</a>
+                <a href="#product4" class="video-link submenu" data-video="BeAware.mp4"> <i class="fa-regular fa-circle-play"></i> Why Be Aware?</a>
+                <a href="#quiz2" class="quiz-link submenu"> <i class="fa-regular fa-circle-question"></i> Quiz 2</a>
+                <a href="#product5" class="video-link submenu" data-video="BeAware.mp4"> <i class="fa-regular fa-circle-play"></i> Mobile Application</a>
+                <a href="#product6" class="video-link submenu" data-video="BeAware.mp4"> <i class="fa-regular fa-circle-play"></i> Services</a>
+                <a href="#quiz3" class="quiz-link submenu"> <i class="fa-regular fa-circle-question"></i> Quiz 3</a>
+                <a href="#map1" class="map-link submenu"> <i class="fa-regular fa-map"></i> Mental Health Clinics</a>
+                <a href="#product7" class="video-link submenu" data-video="BeAware.mp4"> <i class="fa-regular fa-circle-play"></i> Techniques Used</a>
+                <a href="#product8" class="video-link submenu" data-video="BeAware.mp4"> <i class="fa-regular fa-circle-play"></i> About Us</a>
+            </div>
+
+            <button class="dropdown-btn"> <i class="fa-solid fa-list"></i> Part Two</button>
+            <div class="dropdown-container">
+                <a href="#product1" class="video-link submenu" data-video="BeAware.mp4"> <i class="fa-regular fa-circle-play"></i> More About Be Aware</a>
+                <a href="#product2" class="video-link submenu" data-video="BeAware.mp4"> <i class="fa-regular fa-circle-play"></i> Who Are We?</a>
+                
+            </div>
+
+        </nav>
+        <main class="main">
+            <div id="main-content">
+                <video id="main-video" src="BeAware.mp4" controls autoplay></video>
+                
+            </div>
+            <button id="next-button">Continue</button> 
+        </main>
+    </div>
+</html>
+
+<script>
+    function toggleMenuHeight(){
+        const menu = document.getElementById('nav');
+        menu.classList.toggle('expanded')
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+    const toggleButton = document.getElementById('toggleButton');
+    toggleButton.addEventListener('click', toggleMenuHeight);
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    for (var i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+        });
+    }
+    var videoLinks = document.getElementsByClassName("video-link");
+    var mainVideo = document.getElementById("main-video");
+    var mainContent = document.getElementById("main-content");
+
+    for (var j = 0; j < videoLinks.length; j++) {
+        videoLinks[j].addEventListener("click", function(event) {
+            event.preventDefault();
+            var videoSource = this.getAttribute("data-video");
+            mainContent.innerHTML = `<video id="main-video" src="${videoSource}" controls autoplay></video>`;
+        });
+    }
+
+    
+    var quizLink = document.getElementsByClassName("quiz-link")[0];
+    quizLink.addEventListener("click", function(event) {
+        event.preventDefault();
+        mainContent.innerHTML = `
+            <div>
+                <h2>Quiz 1</h2>
+                <form id="quiz-form">
+                    <p>Question: What is the main purpose of "Be Aware"?</p>
+
+                    <div class="choice-container">
+                        <input type="radio" id="answer1" name="answer" value="1">
+                        <label for="answer1"> To manage anxiety</label>
+                    </div>
+
+                    <div class="choice-container">
+                        <input type="radio" id="answer2" name="answer" value="2">
+                        <label for="answer2"> To sell products</label>
+                    </div>
+                    
+                    <div class="choice-container">
+                        <input type="radio" id="answer3" name="answer" value="3">
+                        <label for="answer3"> To raise awareness only</label>
+                    </div>
+                    <input type="submit" value="Submit">
+                </form>
+                <div id="feedback"></div>
+            </div>
+        `;
+
+        document.getElementById("quiz-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var selectedAnswer = document.querySelector('input[name="answer"]:checked');
+            var feedback = document.getElementById("feedback");
+            if (selectedAnswer) {
+                if (selectedAnswer.value === "1") {
+                    feedback.innerHTML = "<p style='color: green;'>Correct! The main purpose is to manage anxiety.</p>";
+                } else {
+                    feedback.innerHTML = "<p style='color: red;'>Incorrect. The correct answer is: To manage anxiety.</p>";
+                }
+            } else {
+                feedback.innerHTML = "<p style='color: red;'>Please select an answer.</p>";
+            }
+        });
+    });
+
+    var quizLink = document.getElementsByClassName("quiz-link")[1];
+    quizLink.addEventListener("click", function(event) {
+        event.preventDefault();
+        mainContent.innerHTML = `
+            <div>
+                <h2>Quiz 2</h2>
+                <form id="quiz-form">
+                    <p>Question: What is "Be Aware"?</p>
+
+                    <div class="choice-container">
+                        <input type="radio" id="answer1" name="answer" value="1">
+                        <label for="answer1"> Mobile Application</label>
+                    </div>
+
+                    <div class="choice-container">
+                        <input type="radio" id="answer2" name="answer" value="2">
+                        <label for="answer2"> Website</label>
+                    </div>
+                    
+                    
+                    <input type="submit" value="Submit">
+                </form>
+                <div id="feedback"></div>
+            </div>
+        `;
+
+        document.getElementById("quiz-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var selectedAnswer = document.querySelector('input[name="answer"]:checked');
+            var feedback = document.getElementById("feedback");
+            if (selectedAnswer) {
+                if (selectedAnswer.value === "1") {
+                    alert("Correct! Be Aware is a Mobile Application." )
+                } else {
+                    feedback.innerHTML = "<p style='color: red;'>Incorrect. The correct answer is: Mobile Application.</p>";
+                }
+            } else {
+                feedback.innerHTML = "<p style='color: red;'>Please select an answer.</p>";
+            }
+        });
+    });
+
+    var quizLink = document.getElementsByClassName("quiz-link")[2];
+    quizLink.addEventListener("click", function(event) {
+        event.preventDefault();
+        mainContent.innerHTML = `
+            <div>
+                <h2>Quiz 3</h2>
+                <form id="quiz-form">
+                    <p>Question: (Be Aware uses Machine Learning and Internet of Things) ?</p>
+
+                    <div class="choice-container">
+                        <input type="radio" id="answer1" name="answer" value="1">
+                        <label for="answer1"> False</label>
+                    </div>
+
+                    <div class="choice-container">
+                        <input type="radio" id="answer2" name="answer" value="2">
+                        <label for="answer2"> True</label>
+                    </div>
+                    
+                    
+                    <input type="submit" value="Submit">
+                </form>
+                <div id="feedback"></div>
+            </div>
+        `;
+
+        document.getElementById("quiz-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var selectedAnswer = document.querySelector('input[name="answer"]:checked');
+            var feedback = document.getElementById("feedback");
+            if (selectedAnswer) {
+                if (selectedAnswer.value === "2") {
+                    feedback.innerHTML = "<p style='color: green;'>Correct. It is True</p>";
+                } else {
+                    feedback.innerHTML = "<p style='color: red;'>Incorrect. The correct answer is: True</p>";
+                }
+            } else {
+                feedback.innerHTML = "<p style='color: red;'>Please select an answer.</p>";
+            }
+        });
+    });
+
+    
+
+    var mapLink = document.getElementsByClassName("map-link")[0];
+    mapLink.addEventListener("click", function(event) {
+        event.preventDefault();
+        mainContent.innerHTML = `
+            <div>
+                <h2>This is an interactive map to view the mental health clinics in Dammam and Al Khobar.</h2>
+                <!-- <button id="dmm" class="dammamBtn">Dammam</button> -->
+
+                <div class="east-map">
+                    <div>
+                        <button class="dmm-btn" onclick="showDammam('dammam')">Dammam</button>
+                        <button class="dmm-btn" onclick="showKhobar('khobar')">Khobar</button>
+                        <button class="dmm-btn" onclick="showLocation('khobar')">All</button>
+                    </div>
+
+                    <img src="eastmap.png" alt="map">
+
+                    <div class="pin dammam alamal">
+                        <span class="location"><i class="fa-solid fa-location-dot fa-xl" style="color: #FFB94D;"></i> Al Alamal</span>
+                    </div>
+
+                    <div class="pin dammam malath">
+                        <span class="location"><i class="fa-solid fa-location-dot fa-xl" style="color: #FFB94D;"></i> Malath Alnafs Clinic</span>
+                    </div>
+
+                    <div class="pin khobar psy">
+                        <span class="location"><i class="fa-solid fa-location-dot fa-xl" style="color: #FFB94D;"></i> Psychiatric and mental health services</span>
+                    </div>
+
+                    <div class="pin khobar bae">
+                        <span class="location"><i class="fa-solid fa-location-dot fa-xl" style="color: #FFB94D;"></i> Bautifaul Mind Clinic</span>
+                    </div>
+
+                    <div class="pin dammam renew">
+                        <span class="location"><i class="fa-solid fa-location-dot fa-xl" style="color: #FFB94D;"></i> Renewal and Reward Center</span>
+                    </div>
+
+                </div>
+                
+            </div>
+        `;
+    });
+    
+    
+});
+document.addEventListener("DOMContentLoaded", function() {
+    let currentIndex = 0;
+    const submenus = document.querySelectorAll('.submenu');
+    const nextButton = document.getElementById('next-button');
+
+    nextButton.addEventListener('click', function() {
+        // Increment the index and wrap around if necessary
+        currentIndex = (currentIndex + 1) % submenus.length;
+
+        // Simulate a click on the next submenu
+        submenus[currentIndex].click();
+    });
+});
+
+
+    function showKhobar(locationType){
+    const allPins = document.querySelectorAll('.khobar');
+    const dmm = document.querySelectorAll('.dammam');
+    allPins.forEach(khobar =>khobar.style.display = 'flex');
+    dmm.forEach(dammam =>dammam.style.display = 'none');
+    }
+    function showDammam(locationType){
+    const allPins = document.querySelectorAll('.dammam');
+    const kh = document.querySelectorAll('.khobar');
+    allPins.forEach(dammam =>dammam.style.display = 'flex');
+    kh.forEach(khobar =>khobar.style.display = 'none');
+    }
+    function showLocation(locationType){
+    const allPins = document.querySelectorAll('.pin');
+    allPins.forEach(pin =>pin.style.display = 'flex');
+    }
+       
+
+</script>
+
