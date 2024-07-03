@@ -25,7 +25,6 @@
         grid-area: header;
         padding-left: 1rem;
         padding-right: 1rem;
-        
         background-color:white;
         display:flex;
         justify-content: space-between;
@@ -232,116 +231,172 @@
             
         }
 
-        #quiz-form input[type="submit"]:hover {
-            background-color: #3FBEB3; /* Change background color on hover */
-            transform: translateY(-10px);
-        }
-        
-        .east-map{
-            width: 100%;
-            max-width: 1100px;
-            margin: 0 auto; 
-            position: relative;
-        }
-        .east-map img{
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 10px; 
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .pin{
-            position:absolute;
-            width: 0.7em;
-            height: 0.7em;
-        }
-        .pin::before{
-            content: '';
-            position:absolute;
-            top: 50%;
-            left: 50%;
-            width: 100%;
-            height: 100%;
-            
-        }
-        .pin span{
-            color: #29376Dff; ;
-            font-size: 0.9em;
-            font-family:'Poppins', sans-serif;
-            white-space: nowrap;
-            position: absolute;
-            left: 1.5em;
-            top: 50%;
-            padding: 0.3em 0.6em;
-            background: #fff;
-            border-radius: 3em;
-            border: solid #FFB94D;
-        }
-        
-        .alamal{
-            top: 41%;
-            left: 47%;
-        }
-        .malath{
-            top: 29%;
-            left: 59%;
-        }
-        .psy{
-            top: 52%;
-            left: 65%;
-        }
-        .bae{
-            top: 56%;
-            left: 75%;
-        }
-        .renew{
-            top: 35%;
-            left: 70%;
-        }
-        /* Hide the elements initially */
-        .pin {
-            display: none;
-        } 
-        .dmm-btn{
-            background-color: #FFB94D; 
-            color: white; 
-            border: none; 
-            padding: 10px 20px; 
-            text-align: center;
-            text-decoration: none;
-            display: inline-block; 
-            font-size: 16px; 
-            margin: 4px 2px; 
-            cursor: pointer; 
-            border-radius: 5px; /* Rounded corners */
-            transition: transform 0.5s;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-        }
-        .dmm-btn:hover{
-            background-color: white; 
-            color: #FFB94D; 
-            border: solid#FFB94D;
-            transform: translateY(-10px);
-        }
-
-        @media screen and (max-width: 600px) {
-            .east-map{
-                font-size: 13px;
-            }
-        }
-        
+    #quiz-form input[type="submit"]:hover {
+        background-color: #3FBEB3; /* Change background color on hover */
+        transform: translateY(-10px);
+    }
     
+    .east-map{
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto; 
+        position: relative;
+    }
+    .east-map img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 10px; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .pin{
+        position:absolute;
+        width: 0.7em;
+        height: 0.7em;
+    }
+    .pin::before{
+        content: '';
+        position:absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        
+    }
+    .dammam span{
+        color: #29376Dff; ;
+        font-size: 0.9em;
+        font-family:'Poppins', sans-serif;
+        white-space: nowrap;
+        position: absolute;
+        left: 1.5em;
+        top: 50%;
+        padding: 0.3em 0.6em;
+        background: #fff;
+        border-radius: 3em;
+        border: solid #FFB94D;
+    }
+    .khobar span{
+        color: #29376Dff; ;
+        font-size: 0.9em;
+        font-family:'Poppins', sans-serif;
+        white-space: nowrap;
+        position: absolute;
+        left: 1.5em;
+        top: 50%;
+        padding: 0.3em 0.6em;
+        background: #fff;
+        border-radius: 3em;
+        border: solid #BFBC78;
+    }
+    
+    .alamal{
+        top: 41%;
+        left: 47%;
+    }
+    .malath{
+        top: 29%;
+        left: 59%;
+    }
+    .psy{
+        top: 52%;
+        left: 65%;
+    }
+    .bae{
+        top: 56%;
+        left: 75%;
+    }
+    .renew{
+        top: 35%;
+        left: 70%;
+    }
+    /* Hide the elements initially */
+    .pin {
+        display: none;
+    } 
+    .dmm-btn{
+        background-color: #FFB94D; 
+        color: white; 
+        border: none; 
+        padding: 10px 20px; 
+        text-align: center;
+        text-decoration: none;
+        display: inline-block; 
+        font-size: 16px; 
+        margin: 4px 2px; 
+        cursor: pointer; 
+        border-radius: 5px; /* Rounded corners */
+        transition: transform 0.5s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    }
+    .dmm-btn:hover{
+        background-color: white; 
+        color: #FFB94D; 
+        border: solid#FFB94D;
+        transform: translateY(-10px);
+    }
+    .kh-btn{
+        background-color: #BFBC78; 
+        color: white; 
+        border: none; 
+        padding: 10px 20px; 
+        text-align: center;
+        text-decoration: none;
+        display: inline-block; 
+        font-size: 16px; 
+        margin: 4px 2px; 
+        cursor: pointer; 
+        border-radius: 5px; /* Rounded corners */
+        transition: transform 0.5s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    }
+    .kh-btn:hover{
+        background-color: white; 
+        color: #BFBC78; 
+        border: solid#BFBC78;
+        transform: translateY(-10px);
+    }
+    .all-btn{
+        background-color: #8EBD91; 
+        color: white; 
+        border: none; 
+        padding: 10px 20px; 
+        text-align: center;
+        text-decoration: none;
+        display: inline-block; 
+        font-size: 16px; 
+        margin: 4px 2px; 
+        cursor: pointer; 
+        border-radius: 5px; /* Rounded corners */
+        transition: transform 0.5s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    }
+    .all-btn:hover{
+        background-color: white; 
+        color: #8EBD91; 
+        border: solid#8EBD91;
+        transform: translateY(-10px);
+    }
+
+    @media screen and (max-width: 600px) {
+        .east-map{
+            font-size: 13px;
+        }
+    }
 </style>
 
 <html>
     
     <div class="container">
         <header>
+
             <h1>Be Aware <p>Ready to wear your peace of mind?</p></h1>
-            
             <img src="BeAware.png" class="logo">
+
         </header>
+
         <div class="after"></div>
+
         <nav id="nav">
             <div id="box">
             <p style="text-align: center; color: #D9BB67ff; 
@@ -349,7 +404,6 @@
 
             <button id="toggleButton"> <i class="fa-solid fa-lock fa-xl"></i> </button> 
 
-            <!--<hr style="border:none; height:3px; background-color: #D9BB67ff;">-->
             </div>
 
             <button class="dropdown-btn"> <i class="fa-solid fa-list"></i> Part One</button>
@@ -377,11 +431,12 @@
 
         </nav>
         <main class="main">
+
             <div id="main-content">
                 <video id="main-video" src="BeAware.mp4" controls autoplay></video>
-                
             </div>
             <button id="next-button">Continue</button> 
+
         </main>
     </div>
 </html>
@@ -564,8 +619,8 @@
                 <div class="east-map">
                     <div>
                         <button class="dmm-btn" onclick="showDammam('dammam')">Dammam</button>
-                        <button class="dmm-btn" onclick="showKhobar('khobar')">Khobar</button>
-                        <button class="dmm-btn" onclick="showLocation('khobar')">All</button>
+                        <button class="kh-btn" onclick="showKhobar('khobar')">Khobar</button>
+                        <button class="all-btn" onclick="showLocation('khobar')">All</button>
                     </div>
 
                     <img src="eastmap.png" alt="map">
@@ -579,11 +634,11 @@
                     </div>
 
                     <div class="pin khobar psy">
-                        <span class="location"><i class="fa-solid fa-location-dot fa-xl" style="color: #FFB94D;"></i> Psychiatric and mental health services</span>
+                        <span class="location"><i class="fa-solid fa-location-dot fa-xl" style="color: #BFBC78;"></i> Psychiatric and mental health services</span>
                     </div>
 
                     <div class="pin khobar bae">
-                        <span class="location"><i class="fa-solid fa-location-dot fa-xl" style="color: #FFB94D;"></i> Bautifaul Mind Clinic</span>
+                        <span class="location"><i class="fa-solid fa-location-dot fa-xl" style="color: #BFBC78;"></i> Bautifaul Mind Clinic</span>
                     </div>
 
                     <div class="pin dammam renew">
@@ -632,4 +687,3 @@ document.addEventListener("DOMContentLoaded", function() {
        
 
 </script>
-
